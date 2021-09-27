@@ -12,7 +12,7 @@ node{
   //Stage 1 : Build the docker image.
         stage('Build image') {
             sh("docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD")
-            sh("docker build -t nagaraj1171/${imageTag} wordpress_app/.")
+            sh("docker build -t vcubefame/${imageTag} wordpress_app/.")
         }
     //Stage 2 : Testing the code.
         stage('Testing the code') {
@@ -22,7 +22,7 @@ node{
 
     //Stage 3 : Push the image to docker registry
         stage('Push image to registry') {
-            sh("docker push nagaraj1171/${imageTag}")
+            sh("docker push vcubefame/${imageTag}")
         }
 
     //Stage 3 : Clean the old images
