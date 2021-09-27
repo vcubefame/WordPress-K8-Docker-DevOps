@@ -40,7 +40,7 @@ node{
                           //Roll out to Dev Environment
                           case "development":
 
-                          sh ("kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null")
+                          sh ('kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null')
 
                           // Create K8 Services
 
