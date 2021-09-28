@@ -27,7 +27,8 @@ node{
 
     //Stage 3 : Clean the old images
             stage('Cleaning Old docker and k8 images') {
-                sh("kubectl delete -k . || true")
+                sh('chmod u+x ./kubectl')
+                sh("./kubectl delete -k . || true")
                 sh('''docker rmi $(docker images -f 'dangling=true' -q) || true
                     docker rmi $(docker images | sed 1,2d | awk '{print "\$3"}') || true''')
             }
@@ -39,12 +40,13 @@ node{
                    switch (namespace) {
                           //Roll out to Dev Environment
                           case "development":
-
-                          sh ('kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null')
+                          
+                          sh('chmod u+x ./kubectl')
+                          sh ('./kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null')
 
                           // Create K8 Services
 
-                          sh("kubectl apply -k .")
+                          sh("./kubectl apply -k .")
 
                           // Check for Service
                             sh("url_c=`minikube service wordpress --url`")
