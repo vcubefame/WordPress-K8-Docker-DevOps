@@ -42,6 +42,8 @@ node{
                           //Roll out to Dev Environment
                           case "development":
                           
+                          sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'
+                          sh 'chmod u+x ./kubectl'
                           sh ('./kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null')
 
                           // Create K8 Services
