@@ -27,8 +27,8 @@ node{
 
     //Stage 3 : Clean the old images
             stage('Cleaning Old docker and k8 images') {
-                sh('curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"')
-                sh('chmod u+x ./kubectl')
+                sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'
+                sh 'chmod u+x ./kubectl'
                 sh("./kubectl delete -k . || true")
                 sh('''docker rmi $(docker images -f 'dangling=true' -q) || true
                     docker rmi $(docker images | sed 1,2d | awk '{print "\$3"}') || true''')
@@ -42,7 +42,6 @@ node{
                           //Roll out to Dev Environment
                           case "development":
                           
-                          sh('chmod u+x ./kubectl')
                           sh ('./kubectl create secret generic mysql --from-literal=password=${mysql_password} &>/dev/null')
 
                           // Create K8 Services
