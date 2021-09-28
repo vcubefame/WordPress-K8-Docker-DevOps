@@ -1,10 +1,11 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: wordpress
   labels:
     app: wordpress
 spec:
+  serviceAccountName: myAccount
   replicas: 2
   selector:
     matchLabels:
