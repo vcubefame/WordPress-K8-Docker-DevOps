@@ -27,6 +27,7 @@ node{
 
     //Stage 3 : Clean the old images
             stage('Cleaning Old docker and k8 images') {
+                sh('curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"')
                 sh('chmod u+x ./kubectl')
                 sh("./kubectl delete -k . || true")
                 sh('''docker rmi $(docker images -f 'dangling=true' -q) || true
