@@ -1,6 +1,6 @@
 FROM php:7.1-apache
 USER root
- install the PHP extensions we need
+# install the PHP extensions we need
 RUN set -ex; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
