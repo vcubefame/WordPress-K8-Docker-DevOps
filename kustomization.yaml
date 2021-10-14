@@ -1,4 +1,4 @@
-resources:
+#resources:
     - k8services/mysql-volumeclaim.yaml
     - k8services/wordpress-volumeclaim.yaml
     - k8services/mysql.yaml
